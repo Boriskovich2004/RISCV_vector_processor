@@ -1,0 +1,19 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/Control.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/Dispatch.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/ICM.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/ImmGen.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/MAC.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/ScalarDCM.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/ScalarRF.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/VPU.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/VectorDCM.v" \
+"../../../../RISCV_vector_processor.srcs/sources_1/new/VectorRF.v" \
+"../../../../RISCV_vector_processor.srcs/sim_1/new/tb_VPU.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

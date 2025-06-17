@@ -1,0 +1,545 @@
+
+*** Running vivado
+    with args -log VPU.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source VPU.tcl
+
+
+
+****** Vivado v2024.2.1 (64-bit)
+  **** SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+  **** IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+  **** SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+  **** Start of session at: Tue Jun 17 09:28:53 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source VPU.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 620.617 ; gain = 191.551
+Command: read_checkpoint -auto_incremental -incremental {D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/utils_1/imports/synth_1/VectorRF.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/utils_1/imports/synth_1/VectorRF.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top VPU -part xcvu9p-flga2104-2-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 31016
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1099.105 ; gain = 468.707
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'VPU' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VPU.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ICM' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ICM.v:24]
+	Parameter ADDR_WIDTH bound to: 2 - type: integer 
+	Parameter INST_WIDTH bound to: 32 - type: integer 
+	Parameter INIT_FILE bound to: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/instruction.vmem - type: string 
+INFO: [Synth 8-251] Loading instruction memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/instruction.vmem [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ICM.v:41]
+INFO: [Synth 8-3876] $readmem data file 'D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/instruction.vmem' is read successfully [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ICM.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'ICM' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ICM.v:24]
+INFO: [Synth 8-6157] synthesizing module 'Dispatch' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/Dispatch.v:23]
+	Parameter INST_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'Dispatch' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/Dispatch.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ImmGen' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ImmGen.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ImmGen' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ImmGen.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Control' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/Control.v:23]
+	Parameter INST_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'Control' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/Control.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ScalarRF' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarRF.v:25]
+	Parameter REG_ADDR_WIDTH bound to: 5 - type: integer 
+	Parameter REG_NUMBER bound to: 7 - type: integer 
+	Parameter REG_DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ScalarRF' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarRF.v:25]
+INFO: [Synth 8-6157] synthesizing module 'ScalarDCM' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarDCM.v:23]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter INIT_FILE bound to: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/ScalarDCM.vmem - type: string 
+INFO: [Synth 8-251] Loading data memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/ScalarDCM.vmem [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarDCM.v:43]
+INFO: [Synth 8-3876] $readmem data file 'D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/ScalarDCM.vmem' is read successfully [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarDCM.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'ScalarDCM' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ScalarDCM.v:23]
+INFO: [Synth 8-6157] synthesizing module 'VectorRF' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorRF.v:23]
+	Parameter VREG_ADDR_WIDTH bound to: 5 - type: integer 
+	Parameter VREG_NUMBER bound to: 7 - type: integer 
+	Parameter VREG_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter VECTOR_LENGTH bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'VectorRF' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorRF.v:23]
+INFO: [Synth 8-6157] synthesizing module 'VectorDCM' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorDCM.v:25]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter VECTOR_LENGTH bound to: 8 - type: integer 
+	Parameter INIT_FILE bound to: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/VectorDCM.vmem - type: string 
+INFO: [Synth 8-251] Loading data memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/VectorDCM.vmem [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorDCM.v:46]
+INFO: [Synth 8-3876] $readmem data file 'D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/VectorDCM.vmem' is read successfully [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorDCM.v:47]
+INFO: [Synth 8-6155] done synthesizing module 'VectorDCM' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VectorDCM.v:25]
+INFO: [Synth 8-6157] synthesizing module 'MAC' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/MAC.v:25]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter VECTOR_LENGTH bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'MAC' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/MAC.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'VPU' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VPU.v:23]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcvu9p-flga2104-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2-e
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6904] The RAM "ICM:/memory_reg" of size (depth=4 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6794] RAM ("VectorDCM:/memory_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"VectorDCM:/memory_reg"'.
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 8     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
++---Registers : 
+	              256 Bit    Registers := 11    
+	               32 Bit    Registers := 13    
+	                5 Bit    Registers := 4     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 10    
++---Multipliers : 
+	              32x32  Multipliers := 8     
++---RAMs : 
+	             256K Bit	(1024 X 256 bit)          RAMs := 1     
+	              32K Bit	(1024 X 32 bit)          RAMs := 1     
+	              128 Bit	(4 X 32 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input  256 Bit        Muxes := 6     
+	   2 Input   32 Bit        Muxes := 8     
+	   2 Input   10 Bit        Muxes := 4     
+	   2 Input    5 Bit        Muxes := 21    
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 19    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 6840 (col length:120)
+BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: Generating DSP out1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator out1 is absorbed into DSP out1.
+DSP Report: operator out1 is absorbed into DSP out1.
+INFO: [Synth 8-6904] The RAM "VPU/icm_inst/memory_reg" of size (depth=4 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+RAM ("VPU/scalar_dcm_inst/memory_reg") is too shallow (depth = 1024) to use URAM. Choosing BRAM instead of URAM 
+RAM ("VPU/vector_dcm_inst/memory_reg") is too shallow (depth = 1024) to use URAM. Choosing BRAM instead of URAM 
+INFO: [Synth 8-6904] The RAM "VPU/icm_inst/memory_reg" of size (depth=4 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 2240.711 ; gain = 1610.312
+---------------------------------------------------------------------------------
+ Sort Area is  out1_0 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_0 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_10 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_10 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_12 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_12 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_6 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_6 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_8 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_8 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_a : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_a : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_c : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_c : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_e : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  out1_e : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  out1_11 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_11 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_13 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_13 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_3 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_3 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_7 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_7 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_9 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_9 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_b : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_b : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_d : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_d : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  out1_f : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  out1_f : 0 1 : 2659 5418 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name | RTL Object                 | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|VPU         | scalar_dcm_inst/memory_reg | 1 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 1      | 1               | 
+|VPU         | vector_dcm_inst/memory_reg | 1 K x 256(READ_FIRST)  | W | R |                        |   |   | Port A           | 1      | 7      | 1,1,1,1,1,1,1,1 | 
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+---------------------+-----------+----------------------+----------------+
+|Module Name | RTL Object          | Inference | Size (Depth x Width) | Primitives     | 
++------------+---------------------+-----------+----------------------+----------------+
+|VPU         | icm_inst/memory_reg | Implied   | 4 x 32               | RAM16X1S x 32  | 
++------------+---------------------+-----------+----------------------+----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 2249.543 ; gain = 1619.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name | RTL Object                 | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|VPU         | scalar_dcm_inst/memory_reg | 1 K x 32(READ_FIRST)   | W | R |                        |   |   | Port A           | 0      | 1      | 1               | 
+|VPU         | vector_dcm_inst/memory_reg | 1 K x 256(READ_FIRST)  | W | R |                        |   |   | Port A           | 1      | 7      | 1,1,1,1,1,1,1,1 | 
++------------+----------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+
+Distributed RAM: Final Mapping Report
++------------+---------------------+-----------+----------------------+----------------+
+|Module Name | RTL Object          | Inference | Size (Depth x Width) | Primitives     | 
++------------+---------------------+-----------+----------------------+----------------+
+|VPU         | icm_inst/memory_reg | Implied   | 4 x 32               | RAM16X1S x 32  | 
++------------+---------------------+-----------+----------------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance scalar_dcm_inst/memory_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 2249.543 ; gain = 1619.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|MAC         | PCIN>>17+A*B | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY8   |    50|
+|3     |DSP48E2  |    24|
+|4     |LUT1     |     2|
+|5     |LUT2     |   437|
+|6     |LUT3     |   807|
+|7     |LUT4     |   277|
+|8     |LUT5     |   653|
+|9     |LUT6     |   912|
+|10    |RAM16X1S |    32|
+|11    |RAMB18E2 |     1|
+|12    |RAMB36E2 |     8|
+|13    |FDCE     |  2629|
+|14    |FDRE     |    37|
+|15    |IBUF     |   367|
+|16    |OBUF     |   288|
++------+---------+------+
+
+Report Instance Areas: 
++------+------------------+----------+------+
+|      |Instance          |Module    |Cells |
++------+------------------+----------+------+
+|1     |top               |          |  6525|
+|2     |  control_inst    |Control   |    41|
+|3     |  dispatch_inst   |Dispatch  |    26|
+|4     |  icm_inst        |ICM       |  1256|
+|5     |  immgen_inst     |ImmGen    |    52|
+|6     |  mac_inst        |MAC       |   704|
+|7     |  scalar_dcm_inst |ScalarDCM |     1|
+|8     |  scalar_rf_inst  |ScalarRF  |   448|
+|9     |  vector_dcm_inst |VectorDCM |   520|
+|10    |  vector_rf_inst  |VectorRF  |  2817|
++------+------------------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.063 . Memory (MB): peak = 2410.527 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 474 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2561.230 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 424 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 24 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 367 instances
+  RAM16X1S => RAM32X1S (RAMS32): 32 instances
+
+Synth Design complete | Checksum: 322076f6
+INFO: [Common 17-83] Releasing license: Synthesis
+57 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 2561.230 ; gain = 1936.074
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 2561.230 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.runs/synth_1/VPU.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file VPU_utilization_synth.rpt -pb VPU_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Jun 17 09:29:32 2025...
