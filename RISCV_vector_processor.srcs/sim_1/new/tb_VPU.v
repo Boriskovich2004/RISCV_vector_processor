@@ -139,13 +139,17 @@ module tb_VPU();
                 @(negedge clk);
             // input vector data
                 icm_wr_addr = 'd0;
-                scalar_wr_addr = 'd0;
+                scalar_wr_addr = scalar_wr_addr + 1;
                 inst_data = 'b0;
                 scalar_wr_data = 'b0;
 
                 vector_wr_addr = 'd0;
                 vector_wr_data = {32'h0000_0001, 32'h0000_0002, 32'h0000_0003, 32'h0000_0004,
                                   32'h0000_0005, 32'h0000_0006, 32'h0000_0007, 32'h0000_0008};
+                @(negedge clk);
+                vector_wr_addr = vector_wr_addr + 1;
+                vector_wr_data = {32'h0000_0009, 32'h0000_000a, 32'h0000_000b, 32'h0000_000c, 
+                                  32'h0000_000d, 32'h0000_000e, 32'h0000_000f, 32'h0000_0010};
                 @(negedge clk);
                 vector_wr_addr = vector_wr_addr + 1;
                 vector_wr_data = {32'h0000_0011, 32'h0000_0012, 32'h0000_0013, 32'h0000_0014, 
@@ -156,31 +160,37 @@ module tb_VPU();
                                   32'h0000_001d, 32'h0000_001e, 32'h0000_001f, 32'h0000_0020};
                 @(negedge clk);
             // input instructions
-                scalar_wr_addr = 'd0;
-                vector_wr_addr = 'd0;
+                scalar_wr_addr = scalar_wr_addr;
+                vector_wr_addr = vector_wr_addr + 1;
                 scalar_wr_data = 'b0;
                 vector_wr_data = 'b0;
 
                 icm_wr_addr    = 'd0;
-                inst_data = 32'b0000_0000_0000_0000_0001_00001_0110111; // MOV R1, 0x0
+                inst_data = 32'b0000_0000_0000_0000_0000_00001_0110111; // MOV R1, 0x0                  R1 = 0
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0000_0000_0000_00001_010_00010_0000011; // LOAD R2, R1, 0x0
+                inst_data = 32'b0000_0000_0000_00001_010_00010_0000011; // LOAD R2, R1, 0x0             R2 = DCM[0] = 1
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0000_0000_0000_00001_011_00010_0000011; // VLOAD VR2 R1 0x0
+                inst_data = 32'b0000_0000_0000_00001_011_00010_0000011; // VLOAD VR2 R1 0x0             VR2 = VDCM[0] = [1, 2, 3, 4, 5, 6, 7, 8]
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0100001_00010_00010_000_00100_0010011; // VMAC VR4 R2 VR2 1(reset)
+                inst_data = 32'b0100001_00010_00010_000_00100_0010011; // VMAC VR4 R2 VR2 1(reset)      VR4 = [1, 2, 3, 4, 5, 6, 7, 8]
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0000_0000_0001_00001_010_00010_0000011; // LOAD R2, R1, 0x1
+                inst_data = 32'b0000_0000_0001_00001_010_00010_0000011; // LOAD R2, R1, 0x1             R2 = DCM[1] = 2
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0000_0000_0001_00001_011_00010_0000011; // VLOAD VR2 R1 0x1
+                inst_data = 32'b0000_0000_0001_00001_011_00010_0000011; // VLOAD VR2 R1 0x1             VR2 = VDCM[1] = [9, a, b, c, d, e, f, 10]
                 @(negedge clk);
                 icm_wr_addr    = icm_wr_addr + 1;
-                inst_data = 32'b0000001_00010_00010_000_00100_0010011; // VMAC VR4 R2 VR2 0(MAC)
+                inst_data = 32'b0000001_00010_00010_000_00100_0010011; // VMAC VR4 R2 VR2 0(MAC)        VR4 = R2*VR2 + VR4 = [13, 16, 19, 22, 25, 28, 31, 34]
+                @(negedge clk);
+                icm_wr_addr    = icm_wr_addr + 1;
+                inst_data = 32'b0000_0000_0000_0000_0011_00001_0110111; // MOV R1, 0x3  
+                @(negedge clk);
+                icm_wr_addr    = icm_wr_addr + 1;
+                inst_data = 32'b0000000_00100_00001_011_00000_0100011; // VSTORE R1 VR4 0x0             
                 @(negedge clk);
 
         // start execution
@@ -195,7 +205,7 @@ module tb_VPU();
         scalar_wr_data = 32'h0000_0000;
         vector_wr_data = {32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 
                           32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 32'h0000_0000};
-        repeat(8) @(negedge clk);
+        repeat(12) @(negedge clk);
 
         // read data
         @(negedge clk);

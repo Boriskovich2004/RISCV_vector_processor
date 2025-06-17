@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_VPU_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_VPU" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="237.099 ns"></ZoomStartTime>
+      <ZoomEndTime time="294.750 ns"></ZoomEndTime>
+      <Cursor1Time time="301.149 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="235"></NameColumnWidth>
+      <ValueColumnWidth column_width="457"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wvobject fp_name="/tb_VPU/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/write_mode" type="logic">
+      <obj_property name="ElementShortName">write_mode</obj_property>
+      <obj_property name="ObjectShortName">write_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/read_mode" type="logic">
+      <obj_property name="ElementShortName">read_mode</obj_property>
+      <obj_property name="ObjectShortName">read_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/scalar_wr_addr" type="array">
+      <obj_property name="ElementShortName">scalar_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">scalar_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/scalar_wr_data" type="array">
+      <obj_property name="ElementShortName">scalar_wr_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">scalar_wr_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/vector_wr_addr" type="array">
+      <obj_property name="ElementShortName">vector_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">vector_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/vector_wr_data" type="array">
+      <obj_property name="ElementShortName">vector_wr_data[255:0]</obj_property>
+      <obj_property name="ObjectShortName">vector_wr_data[255:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/icm_wr_addr" type="array">
+      <obj_property name="ElementShortName">icm_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">icm_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/inst_data" type="array">
+      <obj_property name="ElementShortName">inst_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">inst_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/uut/pc" type="array">
+      <obj_property name="ElementShortName">pc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/uut/instruction" type="array">
+      <obj_property name="ElementShortName">instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/uut/InstImm" type="array">
+      <obj_property name="ElementShortName">InstImm[31:0]</obj_property>
+      <obj_property name="ObjectShortName">InstImm[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_VPU/uut/imm" type="array">
+      <obj_property name="ElementShortName">imm[31:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group414" type="group">
+      <obj_property name="label">MAC</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_VPU/uut/MACScalarSel" type="logic">
+         <obj_property name="ElementShortName">MACScalarSel</obj_property>
+         <obj_property name="ObjectShortName">MACScalarSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACscalar" type="array">
+         <obj_property name="ElementShortName">MACscalar[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MACscalar[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACIn1MuxSel" type="logic">
+         <obj_property name="ElementShortName">MACIn1MuxSel</obj_property>
+         <obj_property name="ObjectShortName">MACIn1MuxSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACvec_a" type="array">
+         <obj_property name="ElementShortName">MACvec_a[255:0]</obj_property>
+         <obj_property name="ObjectShortName">MACvec_a[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACIn2MuxSel" type="logic">
+         <obj_property name="ElementShortName">MACIn2MuxSel</obj_property>
+         <obj_property name="ObjectShortName">MACIn2MuxSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACvec_b" type="array">
+         <obj_property name="ElementShortName">MACvec_b[255:0]</obj_property>
+         <obj_property name="ObjectShortName">MACvec_b[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/mode" type="logic">
+         <obj_property name="ElementShortName">mode</obj_property>
+         <obj_property name="ObjectShortName">mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/MACResult" type="array">
+         <obj_property name="ElementShortName">MACResult[255:0]</obj_property>
+         <obj_property name="ObjectShortName">MACResult[255:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group130" type="group">
+      <obj_property name="label">ScalarRF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_VPU/uut/rs1_addr" type="array">
+         <obj_property name="ElementShortName">rs1_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rs1_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/rs2_addr" type="array">
+         <obj_property name="ElementShortName">rs2_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rs2_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/rs1_data" type="array">
+         <obj_property name="ElementShortName">rs1_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rs1_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/rs2_data" type="array">
+         <obj_property name="ElementShortName">rs2_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rs2_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/ScalarRegWriteEn" type="logic">
+         <obj_property name="ElementShortName">ScalarRegWriteEn</obj_property>
+         <obj_property name="ObjectShortName">ScalarRegWriteEn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/rd_data" type="array">
+         <obj_property name="ElementShortName">rd_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/rd_addr" type="array">
+         <obj_property name="ElementShortName">rd_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/scalar_rf_inst/rf" type="array">
+         <obj_property name="ElementShortName">rf[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">rf[31:0][31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group131" type="group">
+      <obj_property name="label">ScalarDCM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_VPU/uut/ScalarMemRead" type="logic">
+         <obj_property name="ElementShortName">ScalarMemRead</obj_property>
+         <obj_property name="ObjectShortName">ScalarMemRead</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/ScalarMemWrite" type="logic">
+         <obj_property name="ElementShortName">ScalarMemWrite</obj_property>
+         <obj_property name="ObjectShortName">ScalarMemWrite</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/ScalarMemAddr" type="array">
+         <obj_property name="ElementShortName">ScalarMemAddr[9:0]</obj_property>
+         <obj_property name="ObjectShortName">ScalarMemAddr[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/ScalarReadData" type="array">
+         <obj_property name="ElementShortName">ScalarReadData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ScalarReadData[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/ScalarMemWriteData" type="array">
+         <obj_property name="ElementShortName">ScalarMemWriteData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ScalarMemWriteData[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/scalar_dcm_inst/memory" type="array">
+         <obj_property name="ElementShortName">memory[0:1023][31:0]</obj_property>
+         <obj_property name="ObjectShortName">memory[0:1023][31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group139" type="group">
+      <obj_property name="label">VectorRF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_VPU/uut/vrs1_addr" type="array">
+         <obj_property name="ElementShortName">vrs1_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">vrs1_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vrs2_addr" type="array">
+         <obj_property name="ElementShortName">vrs2_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">vrs2_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vrs1_data" type="array">
+         <obj_property name="ElementShortName">vrs1_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">vrs1_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vrs2_data" type="array">
+         <obj_property name="ElementShortName">vrs2_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">vrs2_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorRegWriteEn" type="logic">
+         <obj_property name="ElementShortName">VectorRegWriteEn</obj_property>
+         <obj_property name="ObjectShortName">VectorRegWriteEn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vrd_addr" type="array">
+         <obj_property name="ElementShortName">vrd_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">vrd_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vrd_data" type="array">
+         <obj_property name="ElementShortName">vrd_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">vrd_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/vector_rf_inst/vrf" type="array">
+         <obj_property name="ElementShortName">vrf[31:0][255:0]</obj_property>
+         <obj_property name="ObjectShortName">vrf[31:0][255:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group148" type="group">
+      <obj_property name="label">VectorDCM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_VPU/uut/VectorMemRead" type="logic">
+         <obj_property name="ElementShortName">VectorMemRead</obj_property>
+         <obj_property name="ObjectShortName">VectorMemRead</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorMemWrite" type="logic">
+         <obj_property name="ElementShortName">VectorMemWrite</obj_property>
+         <obj_property name="ObjectShortName">VectorMemWrite</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorDCMWriteDataSel" type="logic">
+         <obj_property name="ElementShortName">VectorDCMWriteDataSel</obj_property>
+         <obj_property name="ObjectShortName">VectorDCMWriteDataSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorMemAddr" type="array">
+         <obj_property name="ElementShortName">VectorMemAddr[9:0]</obj_property>
+         <obj_property name="ObjectShortName">VectorMemAddr[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorMemWriteData" type="array">
+         <obj_property name="ElementShortName">VectorMemWriteData[255:0]</obj_property>
+         <obj_property name="ObjectShortName">VectorMemWriteData[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_VPU/uut/VectorReadData" type="array">
+         <obj_property name="ElementShortName">VectorReadData[255:0]</obj_property>
+         <obj_property name="ObjectShortName">VectorReadData[255:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

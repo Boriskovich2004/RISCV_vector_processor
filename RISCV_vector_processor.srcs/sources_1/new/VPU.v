@@ -102,6 +102,7 @@ module VPU #(
         wire [VREG_DATA_WIDTH * VECTOR_LENGTH - 1:0] vrs1_data; // Data read from vector register vrs1
         wire [VREG_DATA_WIDTH * VECTOR_LENGTH - 1:0] vrs2_data; // Data read from vector register vrs2
         // VectorDCM inputs
+        wire VectorDCMWriteDataSel;
         wire VectorMemRead; // Read enable signal for vector data cache memory
         wire VectorMemWrite; // Write enable signal for vector data cache memory
         wire [VDCM_ADDR_WIDTH - 1:0] VectorMemAddr; // Address for vector data cache memory
@@ -119,6 +120,7 @@ module VPU #(
         // MAC outputs
         wire mode; // 0: mac, 1: reset
         wire [DATA_WIDTH * VECTOR_LENGTH - 1:0] MACResult; // Result of the MAC operation
+        reg  [DATA_WIDTH * VECTOR_LENGTH - 1:0] MACResult_q;
 
     /***** Module instantiations *****/
     // PC
@@ -197,6 +199,7 @@ module VPU #(
         .VectorRegRdSel(VectorRegRdSel),      // selects which data write to VectorRF, 0: MACResult, 1: VectorDCM output
         .VectorMemRead(VectorMemRead),        // Read enable signal for vector data cache memory
         .VectorMemWrite(VectorMemWrite),      // Write enable signal for vector data cache memory
+        .VectorDCMWriteDataSel(VectorDCMWriteDataSel), // selects data from MACResult(1) or VectorRF(0) to VectorDCM write data
         .MACScalarSel(MACScalarSel),          // selects data from ScalarDCM(1) or ScalarRF(0) to MAC scalar input
         .MACIn1MuxSel(MACIn1MuxSel),          // selects data from VectorDCM(1) or VectorRF(0) to MAC input 1
         .MACIn2MuxSel(MACIn2MuxSel)           // selects data from VectorDCM(1) or VectorRF(0) to MAC input 2
@@ -270,10 +273,18 @@ module VPU #(
     );
 
     // VectorDCM instance
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
+            MACResult_q <= 0;
+        end
+        else begin
+            MACResult_q <= MACResult;
+        end
+    end
     assign VectorMemAddr = (write_mode == 1) ? vector_wr_addr :
                            (read_mode  == 1) ? vector_rd_addr : 
                            (imm[VDCM_ADDR_WIDTH - 1:0] + rs1_data[VDCM_ADDR_WIDTH - 1:0]);
-    assign VectorMemWriteData = vrs2_data; // Write data for vector data cache memory
+    assign VectorMemWriteData = VectorDCMWriteDataSel ? MACResult_q : vrs1_data; // Write data for vector data cache memory
     VectorDCM #(
         .ADDR_WIDTH(VDCM_ADDR_WIDTH),
         .DATA_WIDTH(VREG_DATA_WIDTH),

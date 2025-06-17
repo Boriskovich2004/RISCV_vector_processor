@@ -34,6 +34,7 @@ module Control #(
     output reg VectorRegRdSel,   // selects which data write to VectorRF, 0: MACResult, 1: VectorDCM output
     output reg VectorMemRead,    // VectorDCM read enable
     output reg VectorMemWrite,   // VectorDCM write enable
+    output reg VectorDCMWriteDataSel, // selects data write to VectorDCM, 0: VectorRF output, 1: MACResult
     output reg MACScalarSel,     // selects data from ScalarDCM(1) or ScalarRF(0)
     output reg MACIn1MuxSel,     // selects data from VectorDCM(1) or VectorRF(0)
     output reg MACIn2MuxSel      // selects data from VectorDCM(1) or VectorRF(0)
@@ -50,78 +51,93 @@ module Control #(
     wire is_mov    = (opcode == 7'b0110111);
     wire is_mac    = (opcode == 7'b0010011 && func3 == 3'b000 && (func7 == 7'b0000001 || func7 == 7'b0100001));
 
-    reg [INST_WIDTH - 1:0] instruction_q;
-    always @(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
-            instruction_q <= 0;
+    // RAW Hazard Treatment
+        reg RAW_hazard;
+        // save previous instructions
+        reg [INST_WIDTH - 1:0] instruction_q;
+        always @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
+                instruction_q <= 0;
+            end
+            else begin
+                instruction_q <= instruction;
+            end
         end
-        else begin
-            instruction_q <= instruction;
+        reg [INST_WIDTH - 1:0] instruction_q_q;
+        always @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
+                instruction_q_q <= 0;
+            end
+            else begin
+                instruction_q_q <= instruction_q;
+            end
         end
-    end
-    reg [INST_WIDTH - 1:0] instruction_q_q;
-    always @(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
-            instruction_q_q <= 0;
-        end
-        else begin
-            instruction_q_q <= instruction_q;
-        end
-    end
-
-    reg RAW_hazard;
-    always @(*) begin
-        if((instruction_q[6:0] == 7'b0000011 && instruction_q[14:12] == 3'b011) && (instruction[6:0] == 7'b0010011)) begin // previous VLOAD and current VMAC
-            if(instruction_q[11:7] == instruction[11:7] || instruction_q[11:7] == instruction[19:15]) begin // VLOAD's vrd == VMAC's vrs1 or vrs2
-                RAW_hazard <= 1;
+        // compare current instruction and previous 2 instructions to check RAW hazard
+        always @(*) begin
+            if((instruction_q[6:0] == 7'b0000011 && instruction_q[14:12] == 3'b011) && (instruction[6:0] == 7'b0010011)) begin // previous VLOAD and current VMAC
+                if(instruction_q[11:7] == instruction[11:7] || instruction_q[11:7] == instruction[19:15]) begin // VLOAD's vrd == VMAC's vrs1 or vrs2
+                    RAW_hazard <= 1;
+                end
+                else begin
+                    RAW_hazard <= 0;
+                end
+            end
+            else if((instruction_q_q[6:0] == 7'b0000011 && instruction_q_q[14:12] == 3'b010) && (instruction[6:0] == 7'b0010011)) begin // previous 2 cycle LOAD and current VMAC
+                if(instruction_q_q[11:7] == instruction[24:20]) begin // LOAD's rd == VMAC's rs1
+                    RAW_hazard <= 1;
+                end
+                else begin
+                    RAW_hazard <= 0;
+                end
             end
             else begin
                 RAW_hazard <= 0;
             end
         end
-        else if((instruction_q_q[6:0] == 7'b0000011 && instruction_q_q[14:12] == 3'b010) && (instruction[6:0] == 7'b0010011)) begin // previous 2 cycle LOAD and current VMAC
-            if(instruction_q_q[11:7] == instruction[24:20]) begin // LOAD's rd == VMAC's rs1
-                RAW_hazard <= 1;
+        always @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
+                VectorDCMWriteDataSel <= 0;
+            end
+            else  begin
+                if((instruction_q_q[6:0] == 7'b0010011 && instruction_q_q[14:12] == 3'b000) && (instruction[6:0] == 7'b0100011 && instruction[14:12] == 3'b011)) begin  // previous 2 cycle VMAC and current VSTORE
+                    VectorDCMWriteDataSel <= 1;
+                end
+                else begin
+                    VectorDCMWriteDataSel <= 0;
+                end
+            end
+        end
+        always @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
+                MACScalarSel <= 0;
+            end
+            else if(RAW_hazard) begin
+                MACScalarSel <= 1;
             end
             else begin
-                RAW_hazard <= 0;
+                MACScalarSel <= 0;
             end
         end
-        else begin
-            RAW_hazard <= 0;
-        end
-    end
-    always @(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
-            MACScalarSel <= 0;
-        end
-        else if(RAW_hazard) begin
-            MACScalarSel <= 1;
-        end
-        else begin
-            MACScalarSel <= 0;
-        end
-    end
-    always @(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
-            MACIn1MuxSel <= 0;
-            MACIn2MuxSel <= 0;
-        end
-        else if(RAW_hazard) begin
-            if(instruction_q[11:7] == instruction[11:7]) begin // VLOAD's vrd == VMAC's vrd(vrs2)
+        always @(posedge clk or negedge rst_n) begin
+            if(!rst_n) begin
                 MACIn1MuxSel <= 0;
-                MACIn2MuxSel <= 1;
+                MACIn2MuxSel <= 0;
             end
-            else begin // VLOAD's vrd == VMAC's vrs1
-                MACIn1MuxSel <= 1;
+            else if(RAW_hazard) begin
+                if(instruction_q[11:7] == instruction[11:7]) begin // VLOAD's vrd == VMAC's vrd(vrs2)
+                    MACIn1MuxSel <= 0;
+                    MACIn2MuxSel <= 1;
+                end
+                else begin // VLOAD's vrd == VMAC's vrs1
+                    MACIn1MuxSel <= 1;
+                    MACIn2MuxSel <= 0;
+                end
+            end
+            else begin
+                MACIn1MuxSel <= 0;
                 MACIn2MuxSel <= 0;
             end
         end
-        else begin
-            MACIn1MuxSel <= 0;
-            MACIn2MuxSel <= 0;
-        end
-    end
 
     // ScalarRegRdSel logic
         // mov instruction, choose imm immediately
