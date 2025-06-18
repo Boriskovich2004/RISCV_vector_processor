@@ -1,0 +1,13 @@
+Time resolution is 1 ps
+Loading instruction memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/instruction.vmem
+Loading data memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/ScalarDCM.vmem
+Loading data memory from file: D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/VectorDCM.vmem
+Read VDCM Data: 000009e8000027c8ffffcdb00000295d00001292fffffe8effffe642000001d3
+Read VDCM Data: fffffa78ffffe87200003c4dffffc2d8fffff14600005ebfffffbecb00004138
+Read VDCM Data: ffffc55bffffed3d0000214cffffdd85ffffeb420000279afffff5eb00001cc1
+Read VDCM Data: 00002a07fffffa3d000000c3000003f20000077400000153fffff80e00001e89
+Read VDCM Data: 000008af00000f54ffffbc3700004abcfffffb4c00003b01ffffb2f600001ee1
+Read VDCM Data: 0000064e00002dba0000190cffff9f6600003c97ffffcbd600001633ffffe81c
+Read VDCM Data: fffff54000003a31fffff6070000198a00001640ffffaef5000044a4ffffc295
+Read VDCM Data: 0000358400000ffffffffb7fffffd77f000045f7ffffd6ed00000ff8ffffa89f
+$finish called at time : 5660 ns : File "D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/tb_VPU.v" Line 1202

@@ -86,7 +86,6 @@ Matrix_3
 \begin{equation}
 \left[
 \begin{array}{cccccccc}
-    
     2536  &  10184 & -12880 &  10589 &  4754  & -370   & -6590  &  467   \\
    -1416  & -6030  &  15437 & -15656 & -3770  &  24255 & -16693 &  16696 \\
    -15013 & -4803  &  8524  & -8827  & -5310  &  10138 & -2581  &  7361  \\
@@ -237,5 +236,15 @@ Matrix_3
     VSTORE  R3,  VR2          // store VR2 to VectorDCM[23]
 
 \end{lstlisting}
+
+计算的结果存放在VectorDCM中，程序运行结束后将计算结果读出并在tcl窗口中打印，结果如下：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/matrix_result.png}
+    \caption{m32n8k16矩阵乘法任务分配示意图}
+\end{figure}
+
+对应的十进制数与理想结果相同，表明处理器可以正常工作。
 
 \end{document}
