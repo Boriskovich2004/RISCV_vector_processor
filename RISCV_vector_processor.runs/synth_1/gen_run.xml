@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xcvu9p-flga2104-2-e" LaunchTime="1750217074" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/VectorRF.dcp">
-  <File Type="PA-TCL" Name="VPU.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xcvu9p-flga2104-2-e" LaunchTime="1750305555" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/VectorRF.dcp">
   <File Type="REPORTS-TCL" Name="VPU_reports.tcl"/>
-  <File Type="RDS-RDS" Name="VPU.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="VPU_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="VPU_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="VPU_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="VPU.tcl"/>
+  <File Type="RDS-RDS" Name="VPU.vds"/>
   <File Type="RDS-DCP" Name="VPU.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="VPU_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="VPU_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Control.v">

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.5)  19 JUN 2025 00:12
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.5)  19 JUN 2025 19:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -363,12 +363,6 @@ Package fontspec Info:
 
 (./22307130445 贾梓越 报告.aux
 
-LaTeX Warning: Label `Fig.sub.2' multiply defined.
-
-
-LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
-
-
 LaTeX Warning: Label `Fig.sub.1' multiply defined.
 
 
@@ -379,6 +373,21 @@ LaTeX Warning: Label `Fig.sub.2' multiply defined.
 
 
 LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.main' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.1' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.1' multiply defined.
 
 
 LaTeX Warning: Label `Fig.sub.2' multiply defined.
@@ -475,132 +484,4 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(59.74988pt, 478.00812pt, 59.74988pt)
-* v-part:(T,H,B)=(67.60269pt, 676.04005pt, 101.4041pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=478.00812pt
-* \textheight=676.04005pt
-* \oddsidemargin=-12.52011pt
-* \evensidemargin=-12.52011pt
-* \topmargin=-41.6673pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=10.0pt
-* \footskip=30.0pt
-* \marginparwidth=65.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-\c@lstlisting=\count317
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12.045> on input line 21.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 21.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 26.
-
-File: pic/Structure.png Graphic file (type bmp)
-<pic/Structure.png>
-File: pic/instr_set.png Graphic file (type bmp)
-<pic/instr_set.png>
-
-
-[1
-
-]
-
-
-LaTeX Font Warning: Font shape `TU/SimSun(1)/m/sl' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 62.
-
-[2]
-Overfull \hbox (33.19708pt too wide) in paragraph at lines 81--82
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-
-[3]
-
-[4]
-File: pic/MAC_RAW1.jpg Graphic file (type bmp)
-<pic/MAC_RAW1.jpg>
-File: pic/MAC_RAW2.png Graphic file (type bmp)
-<pic/MAC_RAW2.png>
-File: pic/MAC_RAW3.png Graphic file (type bmp)
-<pic/MAC_RAW3.png>
-
-
-[5]
-File: pic/STORE_RAW1.jpg Graphic file (type bmp)
-<pic/STORE_RAW1.jpg>
-File: pic/STORE_RAW2.jpg Graphic file (type bmp)
-<pic/STORE_RAW2.jpg>
-File: pic/STORE_RAW3.jpg Graphic file (type bmp)
-<pic/STORE_RAW3.jpg>
-File: pic/VPU.png Graphic file (type bmp)
-<pic/VPU.png>
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 233.
-
-
-[6]
-
-[7]
-
-[8] (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-)
-
-[9]
-
-[10]
-
-[11]
-File: pic/matrix_result.png Graphic file (type bmp)
-<pic/matrix_result.png>
-
-
-[12] (./22307130445 贾梓越 报告.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2022/08/05>
- ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
-Here is how much of TeX's memory you used:
- 10330 strings out of 473832
- 263189 string characters out of 5733159
- 981355 words of memory out of 5000000
- 33245 multiletter control sequences out of 15000+600000
- 564360 words of font info for 79 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 93i,7n,111p,372b,1585s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on 22307130445 贾梓越 报告.pdf (12 pages).
+* h-part:(L,W,R)=(59.74988p

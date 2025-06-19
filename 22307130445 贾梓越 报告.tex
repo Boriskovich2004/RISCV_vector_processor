@@ -42,6 +42,9 @@
 
 矢量寄存器读取的数据则有两种通路：（1）直接输入乘加运算单元进行计算；（2）写入矢量缓存。
 
+对于乘加单元，考虑到只有一级流水，需要在一个周期内完成乘加运算，本次设计只进行整型数据，即32位有符号整数的乘加运算，也可以拓展到定点数的运算。
+但是如果需要进行浮点数的运算，就需要多个周期完成，控制逻辑的时序就需要修改，较为复杂，本次设计不进行浮点数运算。
+
 除了基本的存储和计算单元，还需要一个整体的控制单元负责控制各个存储器的读写使能信号和寄存器的写使能信号，以及一些数据选择器的选择信号。
 
 \begin{figure}[htbp]
@@ -54,7 +57,7 @@
 矢量处理器可以进行矢量和标量的运算，支持RISCV矢量扩展的SIMD指令。使用的指令集包括MOV，LOAD，VLOAD，MAC，STORE，VSTORE。格式如图2所示。
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=16cm]{pic/instr_set.png}
+    \includegraphics[width=18cm]{pic/instr_set.png}
     \caption{指令集格式设计}
 \end{figure}
 
@@ -103,6 +106,8 @@ STORE和VSTORE的操作码对应RISCV指令集中的存储类指令，两种指�
 因此，控制单元需要在接收到指令的同时产生标量寄存器的写使能信号（ScalarRegWriteEn），才能在下一个周期写入数据，同时标量寄存器输入数据的选择器（ScalarRegRdSel）也要切换到立即数的通路。
 
 因此，对于MOV指令，rd，ScalarRegWriteEn和ScalarRegRdSel都是组合逻辑直接产生的，与译码在同一周期完成。
+
+MOV指令是比较特殊的一条指令，在编写汇编程序时，首先要使用MOV对寄存器进行初始化，将希望访问的存储器地址通过立即数的形式直接写入寄存器，才能开始读取存储器的数据。否则就无法读取数据，也就无法开始计算。
 
 \subsubsection{LOAD指令}
 译码器收到指令，下一个周期从标量寄存器中读出数据并和立即数相加，此时需要存储器的读使能信号（ScalarMemRead）有效，下一个周期从存储器中读出数据，再下一个周期写回寄存器。
@@ -154,7 +159,7 @@ VSTORE和STORE执行过程相似，只是写入的存储器变为矢量存储器
         \label{Fig.sub.2}
         \includegraphics[width=12.7cm]{pic/MAC_RAW2.png}}
     \subfigure[RAW情况2]{
-        \label{Fig.sub.2}
+        \label{Fig.sub.3}
         \includegraphics[width=11.1cm]{pic/MAC_RAW3.png}}
     \caption{MAC指令造成的RAW数据冒险情况}
     \label{Fig.main}
@@ -168,7 +173,6 @@ VSTORE和STORE执行过程相似，只是写入的存储器变为矢量存储器
 和前一种RAW类似，MAC指令在发出后需要经过三个周期才能发出VSTORE指令，如图4（a）所示。
 具体的RAW有两种情况，如图4（a）和（b）所示，情况1中，需要将MAC的计算结果延时一个周期后前馈到矢量存储器。尽管看似仍有一个周期的延时，但是如果不使用前馈，而是写回寄存器，就会消耗两个周期，
 因此前馈仍然是必要的。情况2中，对于VSTORE指令而言，MAC的结果出现的更晚，需要直接前馈到矢量存储器的输入端。
-
 
 \begin{figure}[htbp]
     \centering
@@ -206,28 +210,215 @@ VSTORE和STORE执行过程相似，只是写入的存储器变为矢量存储器
 \end{figure}
 
 \subsection{指令缓存模块}
+指令缓存模块有一个写使能信号，有效时接收外部的数据和地址，进行编程。其他时候则根据读地址输出指令。
+另外，为了方便测试，指令缓存还有一个初始化文件，在测试开始时对缓存进行初始化。需要注意的是，初始化文件需要是.vmem文件，文件中每一行是一个数据，
+且不能有注释，行数必须和缓存大小一致，才能成功初始化。
+端口和参数说明如图6所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/ICM.png}
+    \caption{指令缓存模块端口说明}
+\end{figure}
 
 \subsection{译码器}
+译码器模块接收指令缓存输出的指令，判断指令类型并解码为立即数和寄存器地址等信息，输出给其他模块。端口和参数说明如图7所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/Decode.png}
+    \caption{译码器模块端口说明}
+\end{figure}
 
 \subsection{立即数生成模块}
 
-\subsection{标量寄存器}
+立即数生成模块接收译码器输出的指令，经过一个周期后生成立即数。主要目的是流水线的时序对齐。端口和参数说明如图8所示。
 
-\subsection{标量缓存}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/Immgen.png}
+    \caption{立即数生成模块端口说明}
+\end{figure}
+
+\subsection{标量寄存器}
+标量寄存器是一个三端口模块，有两组读地址和数据接口，一组写地址和数据接口。读数据没有设置使能信号，默认始终根据读地址输出数据，
+写入数据需要写使能信号有效时才写入数据。端口和参数说明如图9所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/ScalarRF.png}
+    \caption{标量寄存器端口说明}
+\end{figure}
+
+\subsection{标量存储器}
+
+标量存储器有一个写端口和一个读端口，根据写使能和读使能决定是否写入数据或读出数据，写入和读出共用一个地址信号。
+端口和参数说明如图10所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/ScalarDCM.png}
+    \caption{标量存储器端口说明}
+\end{figure}
 
 \subsection{矢量寄存器}
 
-\subsection{矢量缓存}
+矢量寄存器和标量寄存器的功能类似，矢量寄存器的数据位宽更大，每个地址对应一个矢量数据。
+端口和参数说明如图11所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VectorRF.png}
+    \caption{矢量寄存器端口说明}
+\end{figure}
+
+\subsection{矢量存储器}
+
+矢量存储器和标量存储器类似，不同的是矢量存储器的数据位宽更大，每个地址对应一个矢量数据。端口和参数说明如图12所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VectorDCM.png}
+    \caption{矢量存储器端口说明}
+\end{figure}
 
 \subsection{标量矢量乘加单元}
 
+MAC模块接收两个矢量和一个标量作为运算输入，根据运算模式输出计算结果。运算模式为1时为初始化，直接将第一个矢量作为输出。
+运算模式为0时将第一个矢量乘以标量后加上第二个矢量作为运算结果输出。端口和参数说明如图13所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/MAC.png}
+    \caption{标量矢量乘加单元端口说明}
+\end{figure}
+
 \subsection{控制单元}
 
+控制单元根据当前指令以及之前的指令，产生相应的控制信号。控制寄存器和存储器的读写，以及各种数据选择器的选择信号。端口和参数说明如图14所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/Control.png}
+    \caption{控制单元端口说明}
+\end{figure}
+
 \section{测试结果}
+测试时，首先通过testbench在写入模式下对VPU的指令存储器、标量存储器和矢量存储器进行初始化，然后切换到执行模式运行指令。
+最后在读取模式下从标量存储器和矢量存储器中读出结果进行验证。
 
 \subsection{指令测试}
 
+\subsubsection{MOV指令测试}
+测试指令为 \verb|MOV R1 0xf| ， \verb|MOV R2 0x3| 。结果应该是标量寄存器R1和R2被写入立即数0xf和0x3。
+
+测试波形如图15所示。可以看到在译码器收到指令的同一个周期，立即数和写地址已经产生，此处的立即数是译码器直接产生的\verb|InstImm| ，而不是立即数生成模块的输出\verb|imm|。
+同时标量寄存器的写入数据选择器切换到立即数通路，寄存器写使能信号有效，下一个周期立即数写入到寄存器中。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU_MOV(1).png}
+    \caption{MOV指令测试波形图}
+\end{figure}
+
+\subsubsection{LOAD指令测试}
+
+测试LOAD指令需要有已经加载到存储器中的数据，因此需要先执行MOV指令将立即数加载到寄存器中。
+测试指令为 \verb|MOV R1 0x1| ， \verb|LOAD R2 R1 0x1| 。结果是标量寄存器R2被写入标量存储器的2号地址，实际第三个位置的数据（3）。
+
+测试波形如图16所示。在译码器接收到指令的同一个周期完成译码，生成寄存器读地址。
+
+下一个周期寄存器数据（rs1\_data）和立即数（imm）输出，相加后得到访存地址\\（ScalarMemAddr）。
+
+下一个周期存储器数据（ScalarReadData）输出，同时寄存器写使能信号（ScalarRegWriteEn）有效，寄存器写地址（rd\_addr）也产生，寄存器写数据选择器（ScalarRegRdSel）切换到存储器数据通路。
+
+下一个周期数据被写入到寄存器中。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU_LOAD(1).png}
+    \caption{LOAD指令测试波形图}
+\end{figure}
+
+\subsubsection{VLOAD指令测试}
+
+测试指令为 \verb|MOV R1 0x1| ， \verb|VLOAD VR3 R1 0x1| 。结果是矢量寄存器VR3被写入矢量存储器2号地址，实际第三个位置的数据\verb|[0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18]| 。
+
+测试波形图如图17所示。在译码器接收到指令的同一个周期完成译码，生成寄存器读地址。
+
+下一个周期寄存器数据（rs1\_data）和立即数（imm）输出，相加后得到访存地址（VectorMemAddr）。
+
+下一个周期存储器数据（VectorReadData）输出，同时寄存器写使能信号（VectorRegWriteEn）有效，寄存器写地址（vrd\_addr）也产生，寄存器写数据选择器（VectorRegRdSel）切换到存储器数据通路。
+
+下一个周期数据被写入到寄存器中。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU_VLOAD(1).png}
+    \caption{VLOAD指令测试波形图}
+\end{figure}
+
+\subsubsection{MAC指令测试}
+
+MAC的测试分为两种情况，一种是reset工作模式，一种是MAC工作模式，测试时按照先reset再MAC的顺序编写指令，每次执行MAC指令前都要用LOAD和VLOAD加载操作数。
+
+reset模式测试指令为 \verb|MOV R1 0x1| ， \verb|LOAD R3 R1 0x1| ，\verb|VLOAD VR3 R1 0x2| ， \verb|MAC VR4 VR3 R3 1|
+
+MAC模式测试指令为   \verb|LOAD R2 R1 0x1| ，\verb|VLOAD VR2 R1 0x2| ， \verb|MAC VR4 VR2 R2 0|
+
+第一个的结果应该是VR4被写入了VR3的值，第二个的结果应该是VR4被写入了（VR2*R2+VR4）的值，在测试中是\verb|[0x13, 0x16, 0x19, 0x1c, 0x1f, 0x22, 0x25, 0x28]|
+
+测试波形图如图18（a）（b）所示。
+
+可以看到两种指令的执行时序是一样的，发出指令的下一个周期MAC模块的输入数据到位，下一个周期计算结果输出，下一个周期写回到寄存器。
+注意到由于LOAD和VLOAD指令发出较晚，需要数据前馈，在MAC指令发出的后一个周期数据直接从两个存储器前馈到MAC模块的输入端，
+这是通过改变输入端选择器（MACIn1MUXSel和MACIn2MUXSel）的数据通路实现的。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[reset模式测试波形]{
+        \label{Fig.sub.1}
+        \includegraphics[width=14cm]{pic/VPU_MAC1(1).png}}
+    \subfigure[MAC模式测试波形]{
+        \label{Fig.sub.2}
+        \includegraphics[width=12.7cm]{pic/VPU_MAC0(1).png}}
+    \caption{MAC指令测试波形图}
+    \label{Fig.main}
+\end{figure}
+
+\subsubsection{VSTORE指令测试}
+
+VSTORE阶段需要存储MAC计算完成的结果，测试指令为\verb|MOV R1 0x3|， \verb|VSTORE VR4 R1 0x0| 。结果应该是矢量存储器的3号地址，
+实际第四个位置被写入VR4中的数据\\\verb|[0x13, 0x16, 0x19, 0x1c, 0x1f, 0x22, 0x25, 0x28]| 。
+
+测试波形如图19所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU_VSTORE(1).png}
+    \caption{VSTORE指令测试波形图}
+\end{figure}
+
+在接收到指令的下一个周期，矢量存储器的写使能信号（VectorMemWrite）有效，写地址（VectorMemAddr）产生，写数据（VectorMemWriteData）直接从MAC单元前馈到存储器的输入。
+下一个周期数据写入存储器，此时矢量存储器写入数据选择器（VectorDCMWriteDataSel）选择MAC的数据通路。
+
+\subsubsection{STORE指令测试}
+
+STORE指令的测试指令为 \verb|MOV R1, 0xf|，\verb|MOV R2, 0x2| ，\verb|STORE R1, R2, 0x1| 。
+结果应该是取R1的数据（0xf），写入R2的值（0x2）加上0x1得到的地址（0x3），即在标量存储器的0x3号地址处写入0xf。
+
+测试波形如图20所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU_STORE(1).png}
+    \caption{STORE指令测试波形图}
+\end{figure}
+
+在接收到指令的写一个周期，标量存储器的使能信号有效，同时立即数和R1数据相加得到访存地址，R2数据作为写入数据，下一个周期写入标量存储器中。
+
 \subsection{整体测试}
+\subsubsection{测试数据}
 测试输入为三个8*8的矩阵，一个存储在向量缓存中，两个存储在标量缓存中，计算矩阵的乘加运算，测试数据为随机生成，如下：
 \begin{equation}
 Matrix_1
@@ -297,7 +488,18 @@ Matrix_3
 \right]
 \end{equation}
 
-测试用的汇编代码如下：
+\subsubsection{测试步骤}
+首先，将三个矩阵和指令输入存储器，矩阵1输入到标量存储器中，矩阵2，3输入到矢量存储器中，指令存储到指令存储器中。
+三个矩阵都默认连续存储，矩阵1占用标量存储器0x0-0x3f的地址空间，矩阵2占用矢量存储器0x0-0x7的地址空间，矩阵3占用矢量存储器0x8-0x10的地址空间。
+三个矩阵通过VPU模块的写模式写入存储器，在testbench中实现。图22是写入过程的波形图。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/write_wfm(1).png}
+    \caption{写入模式波形图}
+\end{figure}
+
+测试用的汇编代码由脚本\verb|gen_inst.py|生成，部分代码如下，完整代码详见\verb|vpu_test.asm| 。
 \lstset{
  columns=fixed,       
  numbers=left,                                        % 在左侧显示行号
@@ -352,46 +554,6 @@ Matrix_3
     MOV     R3,       0x10    // R3 = 0x10(after matrix3)
     VSTORE  R3,  VR2          // store VR2 to VectorDCM[16]
 
-    // line2
-    MOV     R1,       0x8     // R1 = 0x8
-    VLOAD  VR2,  R0,  0x9     // VR2 = Matrix_3[1][:]
-    VMAC   VR3,  R2,  VR2, 1  // VR3 = VR2
-
-    LOAD    R2,  R1,  0x0     // R2 = Matrix_1[1][0]
-    VLOAD  VR2,  R0,  0x0     // VR2 = Matrix_2[0][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x1     // R2 = Matrix_1[1][1]
-    VLOAD  VR2,  R0,  0x1     // VR2 = Matrix_2[1][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x2     // R2 = Matrix_1[1][2]
-    VLOAD  VR2,  R0,  0x2     // VR2 = Matrix_2[2][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x3     // R2 = Matrix_1[1][3]
-    VLOAD  VR2,  R0,  0x3     // VR2 = Matrix_2[3][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x4     // R2 = Matrix_1[1][4]
-    VLOAD  VR2,  R0,  0x4     // VR2 = Matrix_2[4][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x5     // R2 = Matrix_1[1][5]
-    VLOAD  VR2,  R0,  0x5     // VR2 = Matrix_2[5][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x6     // R2 = Matrix_1[1][6]
-    VLOAD  VR2,  R0,  0x6     // VR2 = Matrix_2[6][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    LOAD    R2,  R1,  0x7     // R2 = Matrix_1[1][7]
-    VLOAD  VR2,  R0,  0x7     // VR2 = Matrix_2[7][:]
-    VMAC   VR3,  R2,  VR2, 0  // VR3 = R2 * VR2 + VR3
-
-    MOV     R3,       0x11    // R3 = 0x11(after matrix3)
-    VSTORE  R3,  VR2          // store VR2 to VectorDCM[17]
-
     ...
 
     // line8
@@ -436,17 +598,103 @@ Matrix_3
 
 \end{lstlisting}
 
-计算的结果存放在VectorDCM中，程序运行结束后将计算结果读出并在tcl窗口中打印，结果如下：
+再使用脚本\verb|gen_inst_code.py|将汇编代码转换成机器码，按照testbench的格式输出。
+
+输入数据完成后，启动VPU，在执行完所有指令后进入读取模式。
+依次从标量存储器和矢量存储器中读取计算结果。
+读取的波形图如图22所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/read_wfm.png}
+    \caption{读取模式波形图}
+\end{figure}
+
+将计算结果读出并在tcl窗口中打印，结果如图23所示。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=16cm]{pic/matrix_result.png}
-    \caption{m32n8k16矩阵乘法任务分配示意图}
+    \caption{计算结果}
 \end{figure}
+
+\lstset{
+ columns=fixed,       
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ language=c++,                                        % 设置语言
+}
 
 对应的十进制数与理想结果相同，表明处理器可以正常工作。
 
+\section{性能分析}
+
+\subsection{延时分析}
+时序报告如图24所示。
+在100MHz时钟下，时钟周期为10ns，建立时间裕度2.146ns，保持时间裕度0.02ns。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/timing.png}
+    \caption{时序报告}
+\end{figure}
+
+\subsection{功耗分析}
+功耗分析报告如图25所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/power.png}
+    \caption{功耗报告}
+\end{figure}
+
+\subsection{资源占用}
+
+资源占用报告如图26所示。共使用了6640个查找表，10134个寄存器，9.5个BRAM，24个DSP
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/utilization.png}
+    \caption{资源占用报告}
+\end{figure}
+
 \section{优化分析}
+
+在优化方面，主要对汇编代码进行优化。从原先每次计算都要读取两个数据变为每次仅读取一个标量数据，减少了指令数量和访存次数。
+具体计算过程如图27所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14cm]{pic/calcu_ill.png}
+    \caption{计算顺序示意图}
+\end{figure}
+
+图中是4*4的矩阵乘加运算，编号相同的标量和矢量乘加后加到结果的第一行，图中仅画出了第一行的计算过程，其余同理。这样就将矩阵乘法拆分成了标量矢量乘法。
+
+实际指令级的计算过程如图28所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14cm]{pic/compile_pattern.png}
+    \caption{指令顺序示意图}
+\end{figure}
+
+图中N为矩阵维度，实际情况下为8，按照图中左侧的规律编写指令，需要 $3N^2+2N$ 条指令，按照右边的编写方法，需要 $2N^2+4N$条指令，
+节省了 $N(N-1)$ 条矢量加载指令。考虑到矢量存储器的读取代价大于标量存储器，因此优化后的方法提升了计算速度，也有效地减小了访存延时和功耗。
+优化的代价是需要将矩阵3完全存入寄存器中，占用了较多寄存器空间。
+
+\section{总结}
+本次实验实现了一个支持矢量扩展指令集的矢量处理器。设计了扩展指令集和新的硬件，并且用自己设计的指令集实现了8*8矩阵的乘加运算。
+优化方面，对汇编代码进行了优化，减少了访存的次数，特别是延时功耗开销较大的矢量存储器访问次数，减少了指令数量，提高了运算效率。
+
+通过本次实验，我进一步了解了RISCV的流水线架构中各指令的执行方式，以及指令间数据依赖的解决办法，通过前馈减少了流水线气泡的产生。
 
 
 \end{document}

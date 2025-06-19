@@ -23,8 +23,8 @@
 module Dispatch #(
     parameter INST_WIDTH = 32
 )(
-    input rst_n,
     input clk,
+    input rst_n,
     input [INST_WIDTH - 1:0] instruction,
     output reg [31:0] InstImm,
     output reg [4:0]  rs1,

@@ -26,10 +26,10 @@ module ICM #(
     parameter INST_WIDTH = 32,             // instruction width
     parameter INIT_FILE  = "D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sim_1/new/instruction.vmem"   // instruction memory initialization file
 )(
-    input wire clk,
+    input clk,
     input write,
-    input wire [ADDR_WIDTH-1:0] addr,      // read/write address
-    input [INST_WIDTH-1:0] instruction_in,      // input instruction for write operation [31:0]
+    input [ADDR_WIDTH-1:0] addr,           // read/write address
+    input [INST_WIDTH-1:0] instruction_in, // input instruction for write operation [31:0]
     output reg [INST_WIDTH-1:0] instr      // output instruction
 );
 

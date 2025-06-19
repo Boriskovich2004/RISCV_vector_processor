@@ -1150,7 +1150,19 @@ module tb_VPU();
                     icm_wr_addr    = icm_wr_addr + 1;
                     inst_data = 32'b0000000_00010_00011_011_00000_0100011;  // VSTORE R3 VR2                 store VR2 to VectorDCM[23]
                     @(negedge clk);
-
+            // scalar_wr_addr = scalar_wr_addr;
+            // vector_wr_addr = vector_wr_addr + 1;
+            // scalar_wr_data = 'b0;
+            // vector_wr_data = 'b0;
+            // icm_wr_addr    = 0;
+            // inst_data = 32'b0000_0000_0000_00001111_00001_0110111; // MOV R1, 0xf                  R1 = 0x0
+            // @(negedge clk);
+            // icm_wr_addr    = icm_wr_addr + 1;
+            // inst_data = 32'b0000_0000_0000_00000010_00010_0110111; // MOV R2, 0x2                  R1 = 0x0
+            // @(negedge clk);
+            // icm_wr_addr    = icm_wr_addr + 3;
+            // inst_data = 32'b0000000_00001_00010_010_00001_0100011; // STORE R1, R2, 0x1
+            // @(negedge clk);
         // start execution
         write_mode = 0;
         start = 1;
@@ -1159,7 +1171,7 @@ module tb_VPU();
         icm_wr_addr    = 'd0;
         scalar_wr_addr = 'd0;
         vector_wr_addr = 'd0;
-        inst_data = 32'b0000_0000_0000_0000_0000_00000_0000000; // MOV R2, 0x3
+        inst_data = 32'b0000_0000_0000_0000_0000_00000_0000000;
         scalar_wr_data = 32'h0000_0000;
         vector_wr_data = {32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 
                           32'h0000_0000, 32'h0000_0000, 32'h0000_0000, 32'h0000_0000};

@@ -24,7 +24,7 @@
 // It supports reading from two source registers and writing to a destination register.
 module ScalarRF#(
     parameter REG_ADDR_WIDTH = 5,
-    parameter REG_NUMBER = 2^REG_ADDR_WIDTH, // Number of scalar registers
+    parameter REG_NUMBER = 2**REG_ADDR_WIDTH, // Number of scalar registers
     parameter REG_DATA_WIDTH = 32
  )(
     input clk,
