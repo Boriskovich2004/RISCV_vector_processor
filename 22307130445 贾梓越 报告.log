@@ -484,4 +484,255 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(59.74988p
+* h-part:(L,W,R)=(59.74988pt, 478.00812pt, 59.74988pt)
+* v-part:(T,H,B)=(67.60269pt, 676.04005pt, 101.4041pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=478.00812pt
+* \textheight=676.04005pt
+* \oddsidemargin=-12.52011pt
+* \evensidemargin=-12.52011pt
+* \topmargin=-41.6673pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count317
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12.045> on input line 21.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 21.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 21.
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 26.
+
+File: pic/Structure.png Graphic file (type bmp)
+<pic/Structure.png>
+File: pic/instr_set.png Graphic file (type bmp)
+<pic/instr_set.png>
+
+Overfull \hbox (34.14148pt too wide) in paragraph at lines 60--61
+ [][] 
+ []
+
+
+
+[1
+
+]
+
+
+LaTeX Font Warning: Font shape `TU/SimSun(1)/m/sl' undefined
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 63.
+
+[2]
+Overfull \hbox (33.19708pt too wide) in paragraph at lines 84--85
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+
+[3]
+
+[4]
+File: pic/MAC_RAW1.jpg Graphic file (type bmp)
+<pic/MAC_RAW1.jpg>
+File: pic/MAC_RAW2.png Graphic file (type bmp)
+<pic/MAC_RAW2.png>
+File: pic/MAC_RAW3.png Graphic file (type bmp)
+<pic/MAC_RAW3.png>
+File: pic/STORE_RAW1.jpg Graphic file (type bmp)
+<pic/STORE_RAW1.jpg>
+File: pic/STORE_RAW2.jpg Graphic file (type bmp)
+<pic/STORE_RAW2.jpg>
+File: pic/STORE_RAW3.jpg Graphic file (type bmp)
+<pic/STORE_RAW3.jpg>
+
+
+[5]
+
+[6]
+File: pic/VPU.png Graphic file (type bmp)
+<pic/VPU.png>
+File: pic/ICM.png Graphic file (type bmp)
+<pic/ICM.png>
+File: pic/Decode.png Graphic file (type bmp)
+<pic/Decode.png>
+File: pic/Immgen.png Graphic file (type bmp)
+<pic/Immgen.png>
+File: pic/ScalarRF.png Graphic file (type bmp)
+<pic/ScalarRF.png>
+File: pic/ScalarDCM.png Graphic file (type bmp)
+<pic/ScalarDCM.png>
+File: pic/VectorRF.png Graphic file (type bmp)
+<pic/VectorRF.png>
+File: pic/VectorDCM.png Graphic file (type bmp)
+<pic/VectorDCM.png>
+
+
+[7]
+
+[8]
+
+[9]
+
+[10]
+
+[11]
+File: pic/MAC.png Graphic file (type bmp)
+<pic/MAC.png>
+File: pic/Control.png Graphic file (type bmp)
+<pic/Control.png>
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "FangSong/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'FangSong(0)' created for font 'FangSong'
+(fontspec)             with options [Script={CJK}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
+
+
+
+[12]
+File: pic/VPU_MOV(1).png Graphic file (type bmp)
+<pic/VPU_MOV(1).png>
+File: pic/VPU_LOAD(1).png Graphic file (type bmp)
+<pic/VPU_LOAD(1).png>
+
+Overfull \hbox (2.49684pt too wide) in paragraph at lines 345--346
+\TU/SimSun(1)/b/n/12 器 \TU/lmr/m/n/12 2 \TU/SimSun(1)/b/n/12 号 地 址，|  实 际 第 三 个 位 置 的 数 据[][]\TU/lmtt/m/n/12 [0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18]
+ []
+
+
+
+[13]
+
+[14]
+
+[15]
+File: pic/VPU_VLOAD(1).png Graphic file (type bmp)
+<pic/VPU_VLOAD(1).png>
+
+Overfull \hbox (27.67162pt too wide) in paragraph at lines 365--366
+[]\TU/lmr/m/n/12 reset \TU/SimSun(1)/b/n/12 模 式 测 试 指 令 为 [][]\TU/lmtt/m/n/12 MOV R1 0x1 []\TU/SimSun(1)/b/n/12 ，| [][]\TU/lmtt/m/n/12 LOAD R3 R1 0x1 []\TU/SimSun(1)/b/n/12 ，| [][]\TU/lmtt/m/n/12 VLOAD VR3 R1 0x2 []\TU/SimSun(1)/b/n/12 ，| [][]\TU/lmtt/m/n/12 MAC VR4 VR3 R3 1 
+ []
+
+File: pic/VPU_MAC1(1).png Graphic file (type bmp)
+<pic/VPU_MAC1(1).png>
+File: pic/VPU_MAC0(1).png Graphic file (type bmp)
+<pic/VPU_MAC0(1).png>
+
+Overfull \hbox (23.57689pt too wide) in paragraph at lines 391--393
+[]\TU/lmr/m/n/12 VSTORE \TU/SimSun(1)/b/n/12 阶 段 需 要 存 储 \TU/lmr/m/n/12 MAC \TU/SimSun(1)/b/n/12 计 算 完 成 的 结 果，|  测 试 指 令 为[][]\TU/lmtt/m/n/12 MOV R1 0x3[]\TU/SimSun(1)/b/n/12 ，| [][]\TU/lmtt/m/n/12 VSTORE VR4 R1 0x0
+ []
+
+File: pic/VPU_VSTORE(1).png Graphic file (type bmp)
+<pic/VPU_VSTORE(1).png>
+
+
+[16]
+
+[17]
+File: pic/VPU_STORE(1).png Graphic file (type bmp)
+<pic/VPU_STORE(1).png>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 423.
+
+
+[18]
+File: pic/write_wfm(1).png Graphic file (type bmp)
+<pic/write_wfm(1).png>
+ (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)
+
+[19]
+
+[20]
+File: pic/read_wfm.png Graphic file (type bmp)
+<pic/read_wfm.png>
+File: pic/matrix_result.png Graphic file (type bmp)
+<pic/matrix_result.png>
+File: pic/timing.png Graphic file (type bmp)
+<pic/timing.png>
+
+
+[21]
+File: pic/power.png Graphic file (type bmp)
+<pic/power.png>
+File: pic/utilization.png Graphic file (type bmp)
+<pic/utilization.png>
+File: pic/calcu_ill.png Graphic file (type bmp)
+<pic/calcu_ill.png>
+
+
+[22]
+
+[23]
+File: pic/compile_pattern.png Graphic file (type bmp)
+<pic/compile_pattern.png>
+
+
+[24] (./22307130445 贾梓越 报告.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2022/08/05>
+ ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 10571 strings out of 473832
+ 269187 string characters out of 5733159
+ 972239 words of memory out of 5000000
+ 33453 multiletter control sequences out of 15000+600000
+ 564400 words of font info for 84 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 93i,7n,111p,372b,1585s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on 22307130445 贾梓越 报告.pdf (24 pages).
