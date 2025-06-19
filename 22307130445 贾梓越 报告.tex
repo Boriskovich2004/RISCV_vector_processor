@@ -4,6 +4,7 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{subfigure}
 \usepackage{geometry}
 \usepackage{makecell}
 \usepackage[table,xcdraw]{xcolor}
@@ -16,19 +17,217 @@
 \begin{document}
 
 
-\title{智能计算芯片导论期末课程设计报告——基于RISCV向量扩展指令集的VPU设计}
+\title{智能计算芯片导论期末课程设计报告 \\——基于RISCV向量扩展指令集的VPU设计}
 \maketitle
 \begin{center}
 	22307130445 贾梓越
 \end{center}
 
 \section{设计目标}
-
+使用Verilog搭建一个基于RISCV向量扩展指令集的VPU。使用汇编语言实现8*8的矩阵乘加运算，使用Vivado进行仿真验证，
+并进行性能分析，测试延迟，仿真功耗以及LUT/DSP/BRAM的占用率。最后尝试对架构和软件进行优化，并分析优化的效果。
 \section{设计架构}
+\subsection{整体架构}
+整体架构如图1所示，VPU一共分为四级流水线，每个指令的执行需要经过四个周期：取指，译码并取数，执行或访存，最后写回。
+
+指令缓存用于存储需要执行的指令，由一个指令计数器PC作为读取地址逐个读取，每个指令的位宽为32位，与RISCV的指令集兼容。
+
+指令读出后经过译码器，将指令根据指令类型拆分出为立即数、标量和矢量的源寄存器地址和目标寄存器地址，送往立即数生成模块、标量寄存器和矢量寄存器。
+标量寄存器和矢量寄存器用于存储指令执行过程中的中间结果。
+设计的数据位宽为32，向量寄存器的向量长度为8，因此每个单元位宽为32*8=256位。
+向量寄存器和标量寄存器各32个，对应5位寄存器地址，这也与RISCV指令集的寄存器地址位宽相同。
+由于立即数需要与标量寄存器的读取结果相加，或者直接写入标量寄存器中，因此在译码时将立即数的位宽拓展为32位，便于和一般数据相加。
+
+标量寄存器读取的数据有三种通路：（1）和立即数产生单元的输出数据相加后作为访存的地址访问标量缓存或者矢量缓存；（2）直接输入乘加运算单元进行计算；（3）写入标量缓存
+
+矢量寄存器读取的数据则有两种通路：（1）直接输入乘加运算单元进行计算；（2）写入矢量缓存。
+
+除了基本的存储和计算单元，还需要一个整体的控制单元负责控制各个存储器的读写使能信号和寄存器的写使能信号，以及一些数据选择器的选择信号。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/Structure.png}
+    \caption{架构图}
+\end{figure}
+
+\subsection{指令集设计}
+矢量处理器可以进行矢量和标量的运算，支持RISCV矢量扩展的SIMD指令。使用的指令集包括MOV，LOAD，VLOAD，MAC，STORE，VSTORE。格式如图2所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/instr_set.png}
+    \caption{指令集格式设计}
+\end{figure}
+
+MOV指令使用的操作码对应RISCV指令集中的AUIPC，将立即数直接加载到标量寄存器中，可以表示为
+\begin{lstlisting}
+    imm -> ScalarRF[rd]
+\end{lstlisting}
+
+LOAD和VLOAD指令的操作码都对应RISCV指令集中的LOAD，用func3码段进行区分，将源寄存器中的数加上立即数偏移量作为访存的地址，将存储器的读取结果写入寄存器堆中，
+可以表示为
+\begin{lstlisting}
+    ScalarDCM[ScalarRF[rs1] + imm] -> ScalarRF[rd]
+\end{lstlisting}
+或者
+\begin{lstlisting}
+    VectorDCM[ScalarRF[rs1] + imm] -> VectorRF[vrd]
+\end{lstlisting}
+
+MAC指令的操作码对应RISCV指令集中的计算类指令，为了和其他指令冲突，将func7的最低为设为1，同时func7的第6位作为配置位，如果是1则是reset模式，是0则是计算模式。
+计算时先将目标矢量寄存器的数据和另一个矢量寄存器的数据读出，即使用vrd和vrs1作为矢量寄存器的地址读数，进行乘累加运算后再写回到目标矢量寄存器中。
+此时矢量寄存器需要一次读出两个数据，因此需要两个端口。
+可以表示为
+\begin{lstlisting}
+    Scalar[rs1] * VectorRF[vrs1] + VectorRF[vrd(vrs2)] -> VectorRF[vrd]
+\end{lstlisting} 
+或者
+\begin{lstlisting}
+    VectorRF[vrs1] -> VectorRF[vrd]
+\end{lstlisting}
+
+STORE和VSTORE的操作码对应RISCV指令集中的存储类指令，两种指令用func3码段进行区分，将源寄存器读出的数据加上立即数偏移量作为访存的地址，
+将寄存器堆中的数据写入存储器中。STORE指令用来存储标量，此时标量寄存器需要同时读出访存地址和存储的数据，因此需要两个端口。指令功能可以表示为
+\begin{lstlisting}
+    ScalarRF[rs2]  -> ScalarDCM[ScalarRF[rs1] + imm]
+\end{lstlisting} 
+或者
+\begin{lstlisting}
+    VectorRF[vrs1] -> VectorDCM[ScalarRF[rs1] + imm]
+\end{lstlisting} 
+
+\subsection{指令执行过程}
+控制模块的功能比较复杂，使能和选择信号的产生需要结合指令内容和不同流水级，按照正确的时序给出，这与每个指令的执行顺序有关。
+下面将结合每个指令的执行过程具体说明控制信号的产生逻辑。
+\subsubsection{MOV指令}
+译码器接收到指令的同时，经过一个组合电路产生立即数，同时标量寄存器的写地址（rd）也生成完毕，下一个周期写入标量寄存器。
+因此，控制单元需要在接收到指令的同时产生标量寄存器的写使能信号（ScalarRegWriteEn），才能在下一个周期写入数据，同时标量寄存器输入数据的选择器（ScalarRegRdSel）也要切换到立即数的通路。
+
+因此，对于MOV指令，rd，ScalarRegWriteEn和ScalarRegRdSel都是组合逻辑直接产生的，与译码在同一周期完成。
+
+\subsubsection{LOAD指令}
+译码器收到指令，下一个周期从标量寄存器中读出数据并和立即数相加，此时需要存储器的读使能信号（ScalarMemRead）有效，下一个周期从存储器中读出数据，再下一个周期写回寄存器。
+
+写回地址（rd）和写使能（ScalarRegWriteEn）需要在收到指令两个周期后输入到标量寄存器。
+实际上寄存器输入的选择信号也需要在两个周期后产生，但是因为没有其他情况需要用立即数直接写入寄存器，所以只要保持选择存储器的数据通路即可。
+
+因此，对于LOAD指令，ScalarMemRead在收到指令的下一个周期有效，rd和ScalarRegWriteEn需要经过两个周期的延时后才能更新。
+
+\subsubsection{VLOAD指令}
+VLOAD和LOAD的执行过程类似，接收到指令的下一个周期读出寄存器的数据并与偏移量相加产生地址，此时需要存储器的读使能信号（VectorMemRead）有效，下一个周期访问矢量存储器得到数据，
+再下一个周期写回矢量寄存器，此时需要写回的数据选择器（VectorRegRdSel）选择矢量存储器的数据通路。
+
+因此，和LOAD指令同理，VectorMemRead在收到指令的下一个周期有效，vrd，VectorRegWriteEn和VectorRegRdSel需要经过两个周期的延时后才能更新。
+
+\subsubsection{MAC指令}
+译码器接收到指令的下一个周期从矢量寄存器中读出两个矢量数据，从标量寄存器中读出一个标量数据，下一个周期进行乘累加运算，再下一个周期写回到矢量寄存器，此时需要写回的数据选择器（VectorRegRdSel）选择MAC的数据通路。
+
+因此，对于MAC指令，vrd，VectorRegWriteEn和VectorRegRdSel需要经过两个周期的延时后才能更新。
+
+\subsubsection{STORE指令}
+接收到指令后，下一个周期从标量寄存器读出需要存储的数据和存储地址，此时存储器的写使能信号（ScalarMemWrite）有效，下一个周期写入标量存储器。
+
+因此，对于STORE指令，ScalarMemWrite在收到指令的下一个周期更新。
+
+\subsubsection{VSTORE指令}
+VSTORE和STORE执行过程相似，只是写入的存储器变为矢量存储器。需要写使能信号（VectorMemWrite）在收到指令的下一个周期更新。
+
+\subsection{前馈设计}
+当出现写后读（RAW）时，可能导致数据冒险，在前一条指令未写回时就读出目标寄存器的数据，造成错误的结果。分析指令间的依赖关系，主要的RAW数据冒险分为两类：
+
+\subsubsection{MAC指令造成的RAW}
+执行MAC指令时操作数还没有加载到寄存器中，就被读出作为乘加运算的输入。
+
+通过分析时序关系，第一个周期译码器接受到加载指令，第二个周期存储器地址生成，第三个周期数据读出，第四个周期数据写回，
+而译码器接收到MAC指令的同时就需要读取寄存器的数。因此，从加载指令发出开始计算，需要经过三个周期再发出MAC指令才能避免RAW，如图3（a）所示。
+
+具体而言，有分为两种情况，分别如图3（b）和（c）所示，情况1的加载指令在MAC指令前两个周期发出，当MAC需要读取操作数时，加载的数据正要写回，无法赶上，需要从访存的结果经过一个周期前馈到MAC模块。
+情况2的加载指令在MAC指令前一个周期发出，当MAC需要读取操作数时，加载的数据刚刚从存储器输出，需要直接前馈到MAC模块。
+
+需要实现这个前馈的控制，需要由控制器比对当前指令和之前一条指令，以及再之前一条指令的目标寄存器地址，来判断是否需要前馈，并选择正确的前馈通路。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[无RAW]{
+        \label{Fig.sub.1}
+        \includegraphics[width=14cm]{pic/MAC_RAW1.jpg}}
+    \subfigure[RAW情况1]{
+        \label{Fig.sub.2}
+        \includegraphics[width=12.7cm]{pic/MAC_RAW2.png}}
+    \subfigure[RAW情况2]{
+        \label{Fig.sub.2}
+        \includegraphics[width=11.1cm]{pic/MAC_RAW3.png}}
+    \caption{MAC指令造成的RAW数据冒险情况}
+    \label{Fig.main}
+\end{figure}
+
+\subsubsection{VSTORE造成的RAW}
+执行VSTORE指令时，由于之前的运算操作还未写回，导致矢量寄存器还没有加载到数据，就被读出作为存储的地址。
+
+一般而言，不会出现加载数据后立刻存储相同数据的情况，更常见的情况是计算完成后将结果存到存储器。在这个架构中，不支持标量的计算，因此不考虑标量的存储导致的RAW。
+
+和前一种RAW类似，MAC指令在发出后需要经过三个周期才能发出VSTORE指令，如图4（a）所示。
+具体的RAW有两种情况，如图4（a）和（b）所示，情况1中，需要将MAC的计算结果延时一个周期后前馈到矢量存储器。尽管看似仍有一个周期的延时，但是如果不使用前馈，而是写回寄存器，就会消耗两个周期，
+因此前馈仍然是必要的。情况2中，对于VSTORE指令而言，MAC的结果出现的更晚，需要直接前馈到矢量存储器的输入端。
+
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[无RAW]{
+        \label{Fig.sub.1}
+        \includegraphics[width=14cm]{pic/STORE_RAW1.jpg}}
+    \subfigure[RAW情况1]{
+        \label{Fig.sub.2}
+        \includegraphics[width=12.7cm]{pic/STORE_RAW2.jpg}}
+    \subfigure[RAW情况2]{
+        \label{Fig.sub.2}
+        \includegraphics[width=11.1cm]{pic/STORE_RAW3.jpg}}
+    \caption{VSTORE指令造成的RAW数据冒险情况}
+    \label{Fig.main}
+\end{figure}
+
+在实际架构中，为了应对MAC造成的RAW，添加了VLOAD Forward和LOAD Forward数据通路以及相应的数据选择器，分别用于矢量和标量的前馈。为了应对VSTORE造成的前馈，添加了VSTORE Forward数据通路以及相应的数据选择器。
+由于位置有限，架构图中没有进一步画出控制信号和每种前馈通路的不同情况，只画出通路的示意图。
 
 \section{设计实现}
+\subsection{顶层模块}
+顶层模块包括了指令缓存，译码器，立即数生成模块，标量寄存器和矢量寄存器，标量缓存和矢量缓存，乘加单元和控制单元。
+在模块内部实现了指令计数器，数据选择器，以及各个模块的连线，按照架构图的模式搭建，使各个模块构成一个完整的VPU。
+
+模块提供了外部交互的接口，分为三种模式，写入、执行和读取。写入模式下，VPU不工作，由外部对指令缓存、标量存储器和向量存储器进行数据写入，
+在这个模式下实现了VPU的编程和数据的初始化；
+执行模式下，VPU正常工作，从指令缓存逐条读取指令，执行指令并更新寄存器和存储器；
+读取模式下，VPU停止工作，外部可以从标量缓存和矢量缓存中读取数据，用于验证计算结果。
+具体端口和参数说明如图5所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=16cm]{pic/VPU.png}
+    \caption{顶层模块端口说明}
+\end{figure}
+
+\subsection{指令缓存模块}
+
+\subsection{译码器}
+
+\subsection{立即数生成模块}
+
+\subsection{标量寄存器}
+
+\subsection{标量缓存}
+
+\subsection{矢量寄存器}
+
+\subsection{矢量缓存}
+
+\subsection{标量矢量乘加单元}
+
+\subsection{控制单元}
 
 \section{测试结果}
+
+\subsection{指令测试}
+
+\subsection{整体测试}
 测试输入为三个8*8的矩阵，一个存储在向量缓存中，两个存储在标量缓存中，计算矩阵的乘加运算，测试数据为随机生成，如下：
 \begin{equation}
 Matrix_1
@@ -246,5 +445,8 @@ Matrix_3
 \end{figure}
 
 对应的十进制数与理想结果相同，表明处理器可以正常工作。
+
+\section{优化分析}
+
 
 \end{document}

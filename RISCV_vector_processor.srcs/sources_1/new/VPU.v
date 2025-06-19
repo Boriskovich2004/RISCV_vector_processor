@@ -23,21 +23,21 @@
 module VPU #(
     // Parameters
     // ICM
-    parameter ICM_ADDR_WIDTH = 2              , // Address width for instruction cache
-    parameter ICM_NUMBER = 2^ICM_ADDR_WIDTH   , // Number of instruction cache lines
-    parameter INST_WIDTH = 32                 , // Instruction data width
-    // Scalar 
-    parameter REG_ADDR_WIDTH = 5              , // Address width for scalar registers
-    parameter DCM_ADDR_WIDTH = 10             , // Address width for scalar DCM
-    parameter REG_NUMBER = 2^REG_ADDR_WIDTH   , // Number of scalar registers
-    parameter DCM_NUMBER = 2^DCM_ADDR_WIDTH   , // Number of scalar data cache lines
-    parameter DATA_WIDTH = 32                 , // Data width for scalar registers
-    //Vector 
-    parameter VREG_ADDR_WIDTH = 5             , // Address width for vector registers
-    parameter VDCM_ADDR_WIDTH = 10            , // Address width for vector DCM
-    parameter VREG_NUMBER = 2^VREG_ADDR_WIDTH , // Number of vector registers
-    parameter VDCM_NUMBER = 2^VDCM_ADDR_WIDTH , // Number of vector data cache lines
-    parameter VREG_DATA_WIDTH = 32            , // Data width for vector registers
+    parameter ICM_ADDR_WIDTH = 10              , // Address width for instruction cache
+    parameter ICM_NUMBER = 2**ICM_ADDR_WIDTH   , // Number of instruction cache lines
+    parameter INST_WIDTH = 32                  , // Instruction data width
+    // Scalar  
+    parameter REG_ADDR_WIDTH = 5               , // Address width for scalar registers
+    parameter DCM_ADDR_WIDTH = 10              , // Address width for scalar DCM
+    parameter REG_NUMBER = 2**REG_ADDR_WIDTH   , // Number of scalar registers
+    parameter DCM_NUMBER = 2**DCM_ADDR_WIDTH   , // Number of scalar data cache lines
+    parameter DATA_WIDTH = 32                  , // Data width for scalar registers
+    //Vector  
+    parameter VREG_ADDR_WIDTH = 5              , // Address width for vector registers
+    parameter VDCM_ADDR_WIDTH = 10             , // Address width for vector DCM
+    parameter VREG_NUMBER = 2**VREG_ADDR_WIDTH , // Number of vector registers
+    parameter VDCM_NUMBER = 2**VDCM_ADDR_WIDTH , // Number of vector data cache lines
+    parameter VREG_DATA_WIDTH = 32             , // Data width for vector registers
     parameter VECTOR_LENGTH = 8                // Number of elements in a vector register
 )(
     input clk,

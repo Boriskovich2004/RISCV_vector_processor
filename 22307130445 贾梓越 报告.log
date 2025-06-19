@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.5)  17 JUN 2025 22:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.5)  19 JUN 2025 00:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -230,6 +230,25 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box56
 \@float@everytoks=\toks19
 \@floatcapt=\box57
+) (d:/texlive/2025/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip60
+\subfigcapskip=\skip61
+\subfigcaptopadj=\dimen177
+\subfigbottomskip=\skip62
+\subfigcapmargin=\dimen178
+\subfiglabelskip=\skip63
+\c@subfigure=\count298
+\c@lofdepth=\count299
+\c@subtable=\count300
+\c@lotdepth=\count301
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(d:/texlive/2025/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip64
+\subfig@bottom=\skip65
 ) (d:/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (d:/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -237,32 +256,32 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (d:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count298
-\Gm@cntv=\count299
-\c@Gm@tempcnt=\count300
-\Gm@bindingoffset=\dimen177
-\Gm@wd@mp=\dimen178
-\Gm@odd@mp=\dimen179
-\Gm@even@mp=\dimen180
-\Gm@layoutwidth=\dimen181
-\Gm@layoutheight=\dimen182
-\Gm@layouthoffset=\dimen183
-\Gm@layoutvoffset=\dimen184
+\Gm@cnth=\count302
+\Gm@cntv=\count303
+\c@Gm@tempcnt=\count304
+\Gm@bindingoffset=\dimen179
+\Gm@wd@mp=\dimen180
+\Gm@odd@mp=\dimen181
+\Gm@even@mp=\dimen182
+\Gm@layoutwidth=\dimen183
+\Gm@layoutheight=\dimen184
+\Gm@layouthoffset=\dimen185
+\Gm@layoutvoffset=\dimen186
 \Gm@dimlist=\toks20
 ) (d:/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
  (d:/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
-\col@sep=\dimen185
+\col@sep=\dimen187
 \ar@mcellbox=\box58
-\extrarowheight=\dimen186
+\extrarowheight=\dimen188
 \NC@list=\toks21
-\extratabsurround=\skip60
-\backup@length=\skip61
+\extratabsurround=\skip66
+\backup@length=\skip67
 \ar@cellbox=\box59
 )
-\rotheadsize=\dimen187
-\c@nlinenum=\count301
+\rotheadsize=\dimen189
+\c@nlinenum=\count305
 \TeXr@lab=\toks22
 ) (d:/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
@@ -282,27 +301,27 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 ) (d:/texlive/2025/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 \everycr=\toks23
-\minrowclearance=\skip62
-\rownum=\count302
+\minrowclearance=\skip68
+\rownum=\count306
 ) (d:/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count303
+\lst@mode=\count307
 \lst@gtempboxa=\box60
 \lst@token=\toks24
-\lst@length=\count304
-\lst@currlwidth=\dimen188
-\lst@column=\count305
-\lst@pos=\count306
-\lst@lostspace=\dimen189
-\lst@width=\dimen190
-\lst@newlines=\count307
-\lst@lineno=\count308
-\lst@maxwidth=\dimen191
+\lst@length=\count308
+\lst@currlwidth=\dimen190
+\lst@column=\count309
+\lst@pos=\count310
+\lst@lostspace=\dimen191
+\lst@width=\dimen192
+\lst@newlines=\count311
+\lst@lineno=\count312
+\lst@maxwidth=\dimen193
  (d:/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 ) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count309
-\lst@skipnumbers=\count310
+\c@lstnumber=\count313
+\lst@skipnumbers=\count314
 \lst@framebox=\box61
 ) (d:/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
@@ -310,8 +329,8 @@ File: listings.cfg 2024/09/23 1.10c listings configuration
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
  (d:/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK-listings.sty
 Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
-\l__xeCJK_listings_max_char_int=\count311
-\l__xeCJK_listings_flag_int=\count312
+\l__xeCJK_listings_max_char_int=\count315
+\l__xeCJK_listings_flag_int=\count316
 )
 
 Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault' (SimSun(0)).
@@ -342,25 +361,53 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"SimSun/OT:script=hani;language=dflt;"
 
-(./22307130445 贾梓越 报告.aux)
+(./22307130445 贾梓越 报告.aux
+
+LaTeX Warning: Label `Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.1' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.1' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `sub@Fig.sub.2' multiply defined.
+
+
+LaTeX Warning: Label `Fig.main' multiply defined.
+
+)
 \openout1 = `"22307130445 贾梓越 报告.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -368,57 +415,57 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 16.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 16.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 16.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 16.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 16.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 16.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 16.
-LaTeX Font Info:    Redeclaring math accent \check on input line 16.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 16.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 16.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 16.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 16.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 16.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 17.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 17.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 17.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 17.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 17.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 17.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 17.
+LaTeX Font Info:    Redeclaring math accent \check on input line 17.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 17.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 17.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 17.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 17.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 17.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 16.
+(Font)              `operators' in the math version `normal' on input line 17.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 16.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 17.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 16.
+(Font)              `operators' in the math version `bold' on input line 17.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 16.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 17.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 16.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 16.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 16.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 16.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 16.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 17.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 16.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 16.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 16.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 16.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -454,27 +501,70 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count313
+\c@lstlisting=\count317
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12.045> on input line 20.
+(Font)              <12.045> on input line 21.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 21.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 20.
+(Font)              <6> on input line 21.
 
 LaTeX Warning: No \author given.
 
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 25.
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 26.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 33.
+File: pic/Structure.png Graphic file (type bmp)
+<pic/Structure.png>
+File: pic/instr_set.png Graphic file (type bmp)
+<pic/instr_set.png>
 
 
 [1
 
-] (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+]
+
+
+LaTeX Font Warning: Font shape `TU/SimSun(1)/m/sl' undefined
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 62.
+
+[2]
+Overfull \hbox (33.19708pt too wide) in paragraph at lines 81--82
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+
+[3]
+
+[4]
+File: pic/MAC_RAW1.jpg Graphic file (type bmp)
+<pic/MAC_RAW1.jpg>
+File: pic/MAC_RAW2.png Graphic file (type bmp)
+<pic/MAC_RAW2.png>
+File: pic/MAC_RAW3.png Graphic file (type bmp)
+<pic/MAC_RAW3.png>
+
+
+[5]
+File: pic/STORE_RAW1.jpg Graphic file (type bmp)
+<pic/STORE_RAW1.jpg>
+File: pic/STORE_RAW2.jpg Graphic file (type bmp)
+<pic/STORE_RAW2.jpg>
+File: pic/STORE_RAW3.jpg Graphic file (type bmp)
+<pic/STORE_RAW3.jpg>
+File: pic/VPU.png Graphic file (type bmp)
+<pic/VPU.png>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 233.
+
+
+[6]
+
+[7]
+
+[8] (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -482,20 +572,16 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )
 
+[9]
 
-LaTeX Font Warning: Font shape `TU/SimSun(1)/m/sl' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 142.
+[10]
 
-[2]
-
-[3]
-
-[4]
+[11]
 File: pic/matrix_result.png Graphic file (type bmp)
 <pic/matrix_result.png>
 
 
-[5] (./22307130445 贾梓越 报告.aux)
+[12] (./22307130445 贾梓越 报告.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -504,14 +590,17 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 9980 strings out of 473832
- 253856 string characters out of 5733159
- 977036 words of memory out of 5000000
- 32914 multiletter control sequences out of 15000+600000
- 564336 words of font info for 76 fonts, out of 8000000 for 9000
+ 10330 strings out of 473832
+ 263189 string characters out of 5733159
+ 981355 words of memory out of 5000000
+ 33245 multiletter control sequences out of 15000+600000
+ 564360 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,7n,111p,372b,1621s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,7n,111p,372b,1585s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 22307130445 贾梓越 报告.pdf (5 pages).
+Output written on 22307130445 贾梓越 报告.pdf (12 pages).

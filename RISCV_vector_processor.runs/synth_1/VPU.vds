@@ -3,8 +3,8 @@
 # SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
 # IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
 # SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
-# Start of session at: Tue Jun 17 09:28:53 2025
-# Process ID         : 20752
+# Start of session at: Wed Jun 18 11:24:37 2025
+# Process ID         : 61956
 # Current directory  : D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.runs/synth_1
 # Command line       : vivado.exe -log VPU.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source VPU.tcl
 # Log file           : D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.runs/synth_1/VPU.vds
@@ -19,10 +19,10 @@
 # Host memory        : 33945 MB
 # Swap memory        : 6442 MB
 # Total Virtual      : 40388 MB
-# Available Virtual  : 21620 MB
+# Available Virtual  : 9167 MB
 #-----------------------------------------------------------
 source VPU.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 620.617 ; gain = 191.551
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 623.340 ; gain = 193.035
 Command: read_checkpoint -auto_incremental -incremental {D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/utils_1/imports/synth_1/VectorRF.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/utils_1/imports/synth_1/VectorRF.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -30,13 +30,14 @@ Command: synth_design -top VPU -part xcvu9p-flga2104-2-e
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xcvu9p'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2-e
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 31016
+INFO: [Synth 8-7075] Helper process launched with PID 32472
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1099.105 ; gain = 468.707
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2064.789 ; gain = 367.254
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'VPU' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VPU.v:23]
 INFO: [Synth 8-6157] synthesizing module 'ICM' [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/ICM.v:24]
@@ -87,10 +88,35 @@ INFO: [Synth 8-6157] synthesizing module 'MAC' [D:/Vivado Workplace/RISCV_vector
 INFO: [Synth 8-6155] done synthesizing module 'MAC' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/MAC.v:25]
 INFO: [Synth 8-6155] done synthesizing module 'VPU' (0#1) [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/sources_1/new/VPU.v:23]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2177.688 ; gain = 480.152
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2177.688 ; gain = 480.152
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2177.688 ; gain = 480.152
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 2177.688 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/constrs_1/new/time_constraint.xdc]
+Finished Parsing XDC File [D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.srcs/constrs_1/new/time_constraint.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2305.078 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 2305.078 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2305.078 ; gain = 607.543
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -98,16 +124,20 @@ Start Loading Part and Timing Information
 Loading part: xcvu9p-flga2104-2-e
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-INFO: [Device 21-403] Loading part xcvu9p-flga2104-2-e
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2305.078 ; gain = 607.543
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2305.078 ; gain = 607.543
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6904] The RAM "ICM:/memory_reg" of size (depth=4 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 INFO: [Synth 8-6794] RAM ("VectorDCM:/memory_reg") will be automatically implemented using URAM. 
 INFO: [Synth 8-5780] Default cascade height of 1 will be used for URAM '"VectorDCM:/memory_reg"'.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1213.133 ; gain = 582.734
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 2305.078 ; gain = 607.543
 ---------------------------------------------------------------------------------
-No constraint files found.
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -117,11 +147,11 @@ Detailed RTL Component Info :
 	   2 Input   10 Bit       Adders := 1     
 	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
-	              256 Bit    Registers := 11    
-	               32 Bit    Registers := 13    
+	              256 Bit    Registers := 12    
+	               32 Bit    Registers := 15    
 	                5 Bit    Registers := 4     
 	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 10    
+	                1 Bit    Registers := 13    
 +---Multipliers : 
 	              32x32  Multipliers := 8     
 +---RAMs : 
@@ -129,12 +159,12 @@ Detailed RTL Component Info :
 	              32K Bit	(1024 X 32 bit)          RAMs := 1     
 	              128 Bit	(4 X 32 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input  256 Bit        Muxes := 6     
-	   2 Input   32 Bit        Muxes := 8     
+	   2 Input  256 Bit        Muxes := 8     
+	   2 Input   32 Bit        Muxes := 9     
 	   2 Input   10 Bit        Muxes := 4     
 	   2 Input    5 Bit        Muxes := 21    
 	   2 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 19    
+	   2 Input    1 Bit        Muxes := 16    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -147,7 +177,6 @@ BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-No constraint files found.
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
@@ -253,7 +282,7 @@ RAM ("VPU/scalar_dcm_inst/memory_reg") is too shallow (depth = 1024) to use URAM
 RAM ("VPU/vector_dcm_inst/memory_reg") is too shallow (depth = 1024) to use URAM. Choosing BRAM instead of URAM 
 INFO: [Synth 8-6904] The RAM "VPU/icm_inst/memory_reg" of size (depth=4 x width=32) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 2240.711 ; gain = 1610.312
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2305.078 ; gain = 607.543
 ---------------------------------------------------------------------------------
  Sort Area is  out1_0 : 0 0 : 3101 5879 : Used 1 time 0
  Sort Area is  out1_0 : 0 1 : 2778 5879 : Used 1 time 0
@@ -352,12 +381,17 @@ Note: The table above is a preliminary report that shows the DSPs inferred at th
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
-No constraint files found.
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 2798.320 ; gain = 1100.785
+---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 2249.543 ; gain = 1619.145
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 2814.934 ; gain = 1117.398
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -395,7 +429,7 @@ INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram
 INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance vector_dcm_inst/memory_reg_bram_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 2249.543 ; gain = 1619.145
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 2839.090 ; gain = 1141.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -413,37 +447,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -487,55 +521,47 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+---------+------+
-|      |Cell     |Count |
-+------+---------+------+
-|1     |BUFG     |     1|
-|2     |CARRY8   |    50|
-|3     |DSP48E2  |    24|
-|4     |LUT1     |     2|
-|5     |LUT2     |   437|
-|6     |LUT3     |   807|
-|7     |LUT4     |   277|
-|8     |LUT5     |   653|
-|9     |LUT6     |   912|
-|10    |RAM16X1S |    32|
-|11    |RAMB18E2 |     1|
-|12    |RAMB36E2 |     8|
-|13    |FDCE     |  2629|
-|14    |FDRE     |    37|
-|15    |IBUF     |   367|
-|16    |OBUF     |   288|
-+------+---------+------+
-
-Report Instance Areas: 
-+------+------------------+----------+------+
-|      |Instance          |Module    |Cells |
-+------+------------------+----------+------+
-|1     |top               |          |  6525|
-|2     |  control_inst    |Control   |    41|
-|3     |  dispatch_inst   |Dispatch  |    26|
-|4     |  icm_inst        |ICM       |  1256|
-|5     |  immgen_inst     |ImmGen    |    52|
-|6     |  mac_inst        |MAC       |   704|
-|7     |  scalar_dcm_inst |ScalarDCM |     1|
-|8     |  scalar_rf_inst  |ScalarRF  |   448|
-|9     |  vector_dcm_inst |VectorDCM |   520|
-|10    |  vector_rf_inst  |VectorRF  |  2817|
-+------+------------------+----------+------+
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |BUFG            |     1|
+|2     |CARRY8          |    50|
+|3     |DSP_ALU         |    24|
+|4     |DSP_A_B_DATA    |    24|
+|5     |DSP_C_DATA      |    24|
+|6     |DSP_MULTIPLIER  |    24|
+|7     |DSP_M_DATA      |    24|
+|8     |DSP_OUTPUT      |    24|
+|9     |DSP_PREADD      |    24|
+|10    |DSP_PREADD_DATA |    24|
+|11    |LUT1            |     2|
+|12    |LUT2            |   437|
+|13    |LUT3            |   590|
+|14    |LUT4            |   305|
+|15    |LUT5            |  1163|
+|16    |LUT6            |   882|
+|17    |RAM16X1S        |    32|
+|18    |RAMB18E2        |     1|
+|19    |RAMB36E2        |     8|
+|20    |FDCE            |  2925|
+|21    |FDPE            |     1|
+|22    |FDRE            |    37|
+|23    |IBUF            |   367|
+|24    |OBUF            |   288|
++------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 2390.023 ; gain = 1759.625
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:34 . Memory (MB): peak = 3025.770 ; gain = 1200.844
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 3025.770 ; gain = 1328.234
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.063 . Memory (MB): peak = 2410.527 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 3025.770 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 474 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2561.230 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 3025.770 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 424 instances were transformed.
   BUFG => BUFGCE: 1 instance 
@@ -543,12 +569,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   IBUF => IBUF (IBUFCTRL, INBUF): 367 instances
   RAM16X1S => RAM32X1S (RAMS32): 32 instances
 
-Synth Design complete | Checksum: 322076f6
+Synth Design complete | Checksum: 44a2cbe6
 INFO: [Common 17-83] Releasing license: Synthesis
-57 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+61 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 2561.230 ; gain = 1936.074
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 2561.230 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:52 . Memory (MB): peak = 3025.770 ; gain = 2398.668
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 3025.770 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'D:/Vivado Workplace/RISCV_vector_processor/RISCV_vector_processor.runs/synth_1/VPU.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file VPU_utilization_synth.rpt -pb VPU_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 17 09:29:32 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jun 18 11:25:42 2025...
